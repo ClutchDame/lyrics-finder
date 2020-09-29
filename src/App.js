@@ -35,6 +35,7 @@ export default function App() {
 
   const handleChange = e => {
     const search = e.target.value
+    setChosenArtist(search)
     // when we have at least 3 characters typed in by user, start searching
     if (search.length > 2) {
       getSuggestions(search).then(({ error, data: results }) => {
