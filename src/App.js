@@ -97,7 +97,7 @@ export default function App() {
           })}
         </ul>
       </section>
-      {artist && (
+      {artist && lyrics && (
         <img
           alt="artist poster"
           src={artist.picture}
