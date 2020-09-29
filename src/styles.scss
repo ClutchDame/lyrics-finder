@@ -1,0 +1,121 @@
+@import './_reset.scss';
+
+@font-face {
+  font-family: 'Scratched letters';
+  src: local('Scratched letters'),
+    url('./Scratched-Letters.otf') format('opentype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  src: local('WorkSans'), url('./WorkSans-Regular.otf') format('opentype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  src: local('WorkSans'), url('./WorkSans-Light.otf') format('opentype');
+  font-weight: 200;
+}
+
+html {
+  min-height: 100vh;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  background-color: #f1f1f1;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  margin: 2rem 0;
+  text-align: center;
+  font-size: 4rem;
+  font-family: 'Scratched letters', serif;
+  text-transform: uppercase;
+
+  @media (hover: hover) {
+    font-size: 5rem;
+  }
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    display: block;
+    width: 75vw;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+    font-family: 'WorkSans', sans-serif;
+
+    @media (hover: hover) {
+      width: 50vw;
+    }
+  }
+
+  ul {
+    height: 0;
+    outline: none;
+    transition: height ease 0.3s;
+
+    &[aria-expanded='true'] {
+      height: auto;
+      width: 75vw;
+      padding: 0.5rem;
+      margin: 0;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      max-height: calc(5 * 49px);
+      overflow-y: scroll;
+
+      @media (hover: hover) {
+        width: 50vw;
+      }
+    }
+
+    li {
+      font-size: 1rem;
+      text-align: left;
+      padding: 0.5rem;
+      font-family: 'WorkSans', sans-serif;
+      border-bottom: 1px solid #f1f1f1;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        outline: none;
+        background-color: #f1f1f1;
+      }
+    }
+  }
+}
+
+img {
+  display: block;
+  width: 5rem;
+  margin: 1rem auto 0;
+  border-radius: 50%;
+
+  @media (hover: hover) {
+    width: 10rem;
+  }
+}
+
+pre {
+  padding: 1rem 1rem 2rem;
+  font-family: 'WorkSans', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  white-space: pre-wrap;
+  line-height: 1.15;
+}
