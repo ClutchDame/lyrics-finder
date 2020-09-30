@@ -61,6 +61,7 @@ export default function App() {
       setSearchResults([])
     })
     result.artist && setArtist(result.artist)
+    console.log('boom: picture', result.artist.picture)
   }
 
   const handleKeyDown = (e, index, result) => {
@@ -101,9 +102,7 @@ export default function App() {
       {artist && lyrics && (
         <img
           alt="artist poster"
-          src={`https://${artist.picture}`}
-          srcset={`https://${artist.picture_medium} 250w, ${artist.picture_big} 500w`}
-          sizes="20vmin"
+          src={artist.picture.replace('http', 'https')}
         />
       )}
       <pre>{lyrics}</pre>
