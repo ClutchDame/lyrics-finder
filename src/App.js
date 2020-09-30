@@ -101,8 +101,8 @@ export default function App() {
       {artist && lyrics && (
         <img
           alt="artist poster"
-          src={artist.picture}
-          srcset={`${artist.picture_medium} 250w, ${artist.picture_big} 500w`}
+          src={`https://${artist.picture}`}
+          srcset={`https://${artist.picture_medium} 250w, ${artist.picture_big} 500w`}
           sizes="20vmin"
         />
       )}
