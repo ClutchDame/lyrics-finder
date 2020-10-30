@@ -9,13 +9,15 @@
 
 @font-face {
   font-family: 'WorkSans';
-  src: local('WorkSans'), url('./WorkSans-Regular.otf') format('opentype');
+  src: local('./WorkSans-Regular.otf'),
+    url('./WorkSans-Regular.otf') format('opentype');
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'WorkSans';
-  src: local('WorkSans'), url('./WorkSans-Light.otf') format('opentype');
+  src: local('./WorkSans-Light.otf'),
+    url('./WorkSans-Light.otf') format('opentype');
   font-weight: 200;
 }
 
@@ -49,17 +51,63 @@ section {
   align-items: center;
   justify-content: center;
 
+  form {
+    position: relative;
+    width: 75vw;
+
+    @media (hover: hover) {
+      width: 50vw;
+    }
+  }
+
   input {
     display: block;
-    width: 75vw;
+    width: 100%;
     padding: 0.5rem;
     border-radius: 0.5rem;
     font-size: 1rem;
     text-align: center;
     font-family: 'WorkSans', sans-serif;
+  }
 
-    @media (hover: hover) {
-      width: 50vw;
+  .clear-field {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    width: 2.5em;
+    height: 2.5em;
+    border: none;
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    transform: translate(50%, -50%);
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+
+    &.visible {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1.5em;
+      height: 2px;
+      background-color: #000;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
     }
   }
 
@@ -94,7 +142,7 @@ section {
       &:hover,
       &:focus {
         outline: none;
-        background-color: #f1f1f1;
+        background-color: #b6b6b6;
       }
     }
   }

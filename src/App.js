@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import './styles.scss'
 
@@ -6,7 +6,8 @@ export default function App() {
   const ref = useRef(null)
   const [lyrics, setLyrics] = useState()
   const [artist, setArtist] = useState(null)
-  const [chosenArtist, setChosenArtist] = useState()
+  const [chosenArtist, setChosenArtist] = useState('')
+  const [showClearInput, setShowClearInput] = useState(false)
   const [searchResults, setSearchResults] = useState([])
   const errorMessage = 'Sorry we could not find these lyrics'
 
@@ -36,6 +37,7 @@ export default function App() {
   const handleChange = e => {
     const search = e.target.value
     setChosenArtist(search)
+    setShowClearInput(true)
     // when we have at least 3 characters typed in by user, start searching
     if (search.length > 2) {
       getSuggestions(search).then(({ error, data: results }) => {
@@ -61,7 +63,6 @@ export default function App() {
       setSearchResults([])
     })
     result.artist && setArtist(result.artist)
-    console.log('boom: picture', result.artist.picture)
   }
 
   const handleKeyDown = (e, index, result) => {
@@ -71,17 +72,34 @@ export default function App() {
       ref.current.parentNode.firstChild.focus()
   }
 
+  const clearField = e => {
+    e.preventDefault()
+    setChosenArtist('')
+    setSearchResults([])
+  }
+
+  useEffect(() => {
+    chosenArtist.length === 0 && setShowClearInput(false)
+  }, [chosenArtist])
+
+  const buttonClass = `clear-field ${showClearInput && 'visible'}`
+
   return (
     <>
       <h1>Lyrics finder</h1>
       <section>
-        <input
-          type="text"
-          name="search"
-          placeholder="Artist / Song"
-          onChange={e => handleChange(e)}
-          value={chosenArtist}
-        />
+        <form>
+          <input
+            type="text"
+            name="search"
+            //TODO: placeholder becomes label
+            placeholder="Artist / Song"
+            onChange={e => handleChange(e)}
+            value={chosenArtist}
+          />
+          {/* TODO: Button a11y (focus + aria-label)  */}
+          <button onClick={e => clearField(e)} className={buttonClass}></button>
+        </form>
         <ul tabIndex="-1" aria-expanded={!!searchResults?.length > 0}>
           {searchResults?.map((result, index) => {
             return (
