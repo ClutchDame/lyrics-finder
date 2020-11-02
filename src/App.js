@@ -4,6 +4,7 @@ import './styles.scss'
 
 export default function App() {
   const ref = useRef(null)
+  const inputRef = useRef(null)
   const [lyrics, setLyrics] = useState()
   const [artist, setArtist] = useState(null)
   const [chosenArtist, setChosenArtist] = useState('')
@@ -90,15 +91,16 @@ export default function App() {
       <section>
         <form>
           <input
+            ref={inputRef}
             type="text"
-            name="search"
-            //TODO: placeholder becomes label
-            placeholder="Artist / Song"
+            name="searchInput"
             onChange={e => handleChange(e)}
             value={chosenArtist}
           />
-          {/* TODO: Button a11y (focus + aria-label)  */}
-          <button onClick={e => clearField(e)} className={buttonClass}></button>
+          <label for="searchInput" className={chosenArtist !== '' && "focused"} onClick={() => inputRef.current.focus()}>
+            Search for an artist / song
+          </label>
+          <button aria-label="clear search field" onClick={e => clearField(e)} className={buttonClass}></button>
         </form>
         <ul tabIndex="-1" aria-expanded={!!searchResults?.length > 0}>
           {searchResults?.map((result, index) => {

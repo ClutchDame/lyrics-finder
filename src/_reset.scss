@@ -102,6 +102,9 @@ section {
 }
 body {
   line-height: 1;
+  * {
+    box-sizing: border-box;
+  }
 }
 ol,
 ul {
@@ -115,7 +118,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 table {
