@@ -98,7 +98,7 @@ export default function App() {
             value={chosenArtist}
           />
           <label for="searchInput" className={chosenArtist !== '' && "focused"} onClick={() => inputRef.current.focus()}>
-            Search for an artist / song
+            Search artist / song
           </label>
           <button aria-label="clear search field" onClick={e => clearField(e)} className={buttonClass}></button>
         </form>
